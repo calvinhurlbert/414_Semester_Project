@@ -2,7 +2,7 @@ import socket
 
 # Socket IP and port global variables
 server_host = "127.0.0.1"
-server_port = 443
+server_port = 414
 
 # Authentication loop
 while True:
