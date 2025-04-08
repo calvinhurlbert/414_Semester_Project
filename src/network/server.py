@@ -6,7 +6,7 @@ server_port = 414
 
 # Setting up socket
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-server.bind(('', server_port))
+server.bind((server_host, server_port))
 server.listen(1)
 print ("Socket created\n")
 
