@@ -22,25 +22,25 @@ current_connections = 0
 while True:
 	if current_connections >= connection_limit:
 		continue
+	else:
+		# Waiting for client connection
+		print("Waiting for client ...")
+		client, addr = server.accept()
+		print("Client connected from: ", addr)
+		current_connections += 1
 
-	# Waiting for client connection
-	print("Waiting for client ...")
-	client, addr = server.accept()
-	print("Client connected from: ", addr)
-	current_connections += 1
+		# Receiving password
+		password = client.recv(64).decode()
+		print("Password received: ", password)
 
-	# Receiving password
-	password = client.recv(64).decode()
-	print("Password received: ", password)
+		# Authenticating password
+		verified = authenticate(password)
+		response = "Password verified" if verified else "Password not valid"
 
-	# Authenticating password
-	verified = authenticate(password)
-	response = "Password verified" if verified else "Password not valid"
+		# Sending output back to client
+		client.send(response.encode())
+		print("Response sent\n")
 
-	# Sending output back to client
-	client.send(response.encode())
-	print("Response sent\n")
-
-	# Closing connection to client
-	client.close()
-	current_connections -= 1
+		# Closing connection to client
+		client.close()
+		current_connections -= 1
