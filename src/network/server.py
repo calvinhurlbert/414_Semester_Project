@@ -15,12 +15,19 @@ def authenticate(password):
 	valid_passwords = ["testpass", "password123"]
 	return True if password in valid_passwords else False
 
+connection_limit = 10
+current_connections = 0
+
 # Server loop
 while True:
+	if current_connections >= connection_limit:
+		continue
+
 	# Waiting for client connection
 	print("Waiting for client ...")
 	client, addr = server.accept()
 	print("Client connected from: ", addr)
+	current_connections += 1
 
 	# Receiving password
 	password = client.recv(64).decode()
@@ -36,3 +43,4 @@ while True:
 
 	# Closing connection to client
 	client.close()
+	current_connections -= 1
