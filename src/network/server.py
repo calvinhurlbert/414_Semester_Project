@@ -15,7 +15,7 @@ def authenticate(password):
 	valid_passwords = ["testpass", "password123"]
 	return True if password in valid_passwords else False
 
-connection_limit = 10
+connection_limit = 100
 current_connections = 0
 
 # Server loop
