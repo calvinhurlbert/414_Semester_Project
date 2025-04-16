@@ -20,9 +20,7 @@ current_connections = 0
 
 # Server loop
 while True:
-	if current_connections >= connection_limit:
-		continue
-	else:
+	if current_connections < connection_limit:
 		# Waiting for client connection
 		print("Waiting for client ...")
 		client, addr = server.accept()
@@ -46,3 +44,5 @@ while True:
 		client.close()
 		current_connections -= 1
 		print(current_connections, "\n")
+	else:
+		print("Too many connections")
