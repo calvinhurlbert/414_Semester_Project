@@ -41,8 +41,10 @@ while True:
 		print("Response sent")
 
 		# Closing connection to client
+		closed = True if client.recv(64).decode() == "Close" else False
 		client.close()
-		current_connections -= 1
+		if closed:
+			current_connections -= 1
 		print(current_connections, "\n")
 	else:
 		print("Too many connections")

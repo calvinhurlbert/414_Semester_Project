@@ -20,4 +20,5 @@ while True:
     response = server.recv(64).decode()
     print(response, "\n")
         
+    server.send("Close".encode())
     server.close()
