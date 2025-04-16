@@ -45,4 +45,4 @@ while True:
 		# Closing connection to client
 		client.close()
 		current_connections -= 1
-		print(current_connections + "\n")
+		print(current_connections, "\n")
