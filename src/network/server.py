@@ -28,6 +28,7 @@ while True:
 		client, addr = server.accept()
 		print("Client connected from: ", addr)
 		current_connections += 1
+		print(current_connections)
 
 		# Receiving password
 		password = client.recv(64).decode()
@@ -39,8 +40,9 @@ while True:
 
 		# Sending output back to client
 		client.send(response.encode())
-		print("Response sent\n")
+		print("Response sent")
 
 		# Closing connection to client
 		client.close()
 		current_connections -= 1
+		print(current_connections + "\n")
